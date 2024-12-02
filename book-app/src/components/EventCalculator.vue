@@ -1,12 +1,14 @@
 <script setup>
-import {ref,onMounted,onUpdated} from 'vue';
+import {ref,onMounted,onUpdated,defineEmits} from 'vue';
 
+const emit=defineEmits(["resultChanged"]);
 const fig1=ref(4);
 const fig2=ref(5);
 const result=ref(fig1.value+fig2.value);
 
 function calculate(){
-    result.value=fig1.value+fig2.value;    
+    result.value=fig1.value+fig2.value; 
+    emit("resultChanged",result.value);   
 }
 
 onMounted(() => console.log("Event calculator mounted",fig1.value,fig1.value))
