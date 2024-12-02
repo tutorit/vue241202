@@ -27,13 +27,20 @@
             <p>The page should hold two input fields with data bindings to those properties.</p>
             <p>Display the sum of the fig1 and fig2 using interpolation.</p>
 			<div id="vuecontent">
-                <input /> + <input />
-                = <span>Result here</span>
+                <input type="number" v-model.number="fig1" /> + <input type="number" v-model="fig2" />
+                = <span>{{fig1+fig2}}</span>
 			</div>
 		</main>
         <script type="module">
             import { createApp } from 'vue'
-            const app=createApp({});
+            const app=createApp({
+              data(){
+                return {
+                  fig1:0,
+                  fig2:2
+                }
+              }
+            });
             app.mount('#vuecontent');
         </script>
         <footer>
