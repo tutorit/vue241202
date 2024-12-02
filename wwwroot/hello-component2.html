@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hello Vue</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="libs/bootstrap/css/bootstrap.css" rel="stylesheet">
+	<link href="styles/styles.css" rel="stylesheet" />
+    <script type="importmap">
+        {
+          "imports": {
+            "vue": "/libs/vue.esm-browser.js"
+          }
+        }
+      </script>
+</head>
+<body>
+    <div class="container">
+		<header>
+			<img src="/images/demoicon.jpg" />
+			<h1>Demonstration</h1>
+		</header>
+		<main>
+			<h1>Hello world</h1>
+            <p>Slightly different approach to create a component. Component is given a "name" that can be used as tag below.</p>
+            <div id="vuecontent">
+                <Hello />
+            </div>
+		</main>
+        <script type="module">
+            import { createApp } from 'vue'
+            const app=createApp({});
+            app.component("Hello",{
+                template:`<div><input v-model="message" />{{message}}</div>`,
+                data(){
+                    return {message:"Hello, Vue!"}
+                }
+            })
+            app.mount('#vuecontent');
+        </script>
+        <footer>
+			Copyright (c) Kooditutorit Konsultointi Oy, 2023 
+			&#124; <a href="http://www.kooditutorit.fi">www.kooditutorit.fi</a>
+			&#124; <a href="mailto:info@kooditutorit.fi">info@kooditutorit.fi</a>
+		</footer>
+	</div>
+</body>
+</html>
+

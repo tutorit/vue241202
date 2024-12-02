@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hello Vue</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="libs/bootstrap/css/bootstrap.css" rel="stylesheet">
+	<link href="styles/styles.css" rel="stylesheet" />
+    <script type="importmap">
+        {
+          "imports": {
+            "vue": "/libs/vue.esm-browser.js"
+          }
+        }
+      </script>
+      <script>
+        const calc={
+          template:`<div>Complete this</div>`,
+          data(){
+            return {
+            }
+          }
+        }
+      </script>
+
+</head>
+<body>
+    <div class="container">
+		<header>
+			<img src="/images/taskicon.png" />
+			<h1>Exercise</h1>
+		</header>
+		<main>
+			<h1>Calculator</h1>
+            <p>Now you should create calculator component and display it below</p>
+			<div id="vuecontent">
+			</div>
+		</main>
+        <script type="module">
+            import { createApp } from 'vue'
+            const app=createApp(calc);
+            app.mount('#vuecontent');
+        </script>
+        <footer>
+			Copyright (c) Kooditutorit Konsultointi Oy, 2023 
+			&#124; <a href="http://www.kooditutorit.fi">www.kooditutorit.fi</a>
+			&#124; <a href="mailto:info@kooditutorit.fi">info@kooditutorit.fi</a>
+		</footer>
+	</div>
+</body>
+</html>
