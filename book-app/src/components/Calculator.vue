@@ -1,6 +1,6 @@
 <script setup>
 import {ref,computed,defineProps,watch,defineEmits} from 'vue';
-const emit=defineEmits(["calculation-changed"])
+const emit=defineEmits(["calculationChanged"])
 const props = defineProps(["fig1","fig2"])
 const fig1=ref(props.fig1);
 const fig2=ref(props.fig2);
