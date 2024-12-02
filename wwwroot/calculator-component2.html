@@ -21,12 +21,24 @@
             +
             <input type="number" v-model="fig2" />
             =
-            {{fig1+fig2}}
+            {{fig1+fig2}}, {{calculation}}
             </div>`,
           data(){
             return {
                 fig1:3,
                 fig2:5,
+                calculation:'Nothing yet',
+            }
+          },
+          computed:{
+            result:function() {
+              return this.fig1+this.fig2;
+            }
+          },
+          watch:{
+            result: function(nv,ov){
+              console.log("Vanha",ov,"Uusi",nv)
+              this.calculation=`${this.fig1} + ${this.fig2} = ${nv}`;
             }
           }
         }
