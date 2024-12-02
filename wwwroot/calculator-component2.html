@@ -43,11 +43,15 @@
 			<h1>Calculator</h1>
             <p>Now you should create calculator component and display it below</p>
 			<div id="vuecontent">
-			</div>
+        <Calc></Calc>
+        <Calc></Calc>
+        <Calc></Calc>
+      </div>
 		</main>
         <script type="module">
             import { createApp } from 'vue'
-            const app=createApp(calc);
+            const app=createApp({});
+            app.component("Calc",calc)
             app.mount('#vuecontent');
         </script>
         <footer>
