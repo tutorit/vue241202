@@ -13,8 +13,12 @@ import logo from './assets/books.gif'
         <img :src="logo" />
         <h1>Kirjasovellus</h1>
       </header>
+      <nav>
+        <RouterLink to="/">Books</RouterLink>
+        <RouterLink to="/calc">Calculators</RouterLink>
+      </nav>
       <main>
-        <BookList />
+        <RouterView />
       </main>
       <footer>
         Copyright Acme Ltd
