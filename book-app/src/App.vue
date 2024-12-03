@@ -6,8 +6,9 @@ import CalculatorContainer from './components/CalculatorContainer.vue';
 import BookList from './components/BookList.vue'
 import logo from './assets/books.gif'
 import { HTTP } from './utils/http';
-import { provide, ref } from 'vue';
+import { onBeforeUnmount, onMounted, provide, ref } from 'vue';
 import { bookServiceHttp } from './utils/bookservicehttp';
+import { useSocketStore } from './utils/SocketStore';
 
 
 bookServiceHttp.getAll();
@@ -29,6 +30,24 @@ function loadTranslations(locale){
 
 loadTranslations("en");
 
+
+const socketStore=useSocketStore();
+
+let socket=null;
+onMounted(() => {
+    console.log("Mount")
+    socket=new WebSocket("ws://localhost:9001");
+    socket.onmessage=function(ev){
+      socketStore.add(Number(ev.data));
+    }
+})
+
+onBeforeUnmount(() => {
+    console.log("Unmoint")
+    socket.close();
+})
+
+
 </script>
 
 <template>
@@ -40,6 +59,7 @@ loadTranslations("en");
       <nav>
         <RouterLink to="/">Books</RouterLink>
         <RouterLink to="/calc">Calculators</RouterLink>
+        <RouterLink to="/ws">Socket</RouterLink>
         <a @click="() => loadTranslations('en')" class="trans">EN</a>
         <a @click="() => loadTranslations('fi')" class="trans">FI</a>
       </nav>
@@ -47,7 +67,7 @@ loadTranslations("en");
         <RouterView />
       </main>
       <footer>
-        Copyright Acme Ltd
+        Copyright Acme Ltd {{ socketStore.latest }}
       </footer>
     </div>
 </template>

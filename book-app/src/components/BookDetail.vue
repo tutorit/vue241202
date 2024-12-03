@@ -7,7 +7,7 @@ import { useRoute, useRouter } from 'vue-router';
 const route=useRoute();
 const id=route.params.id;
 const book=bookServiceHttp.get(id);
-
+console.log("Book",book)
 
 const router=useRouter();
 

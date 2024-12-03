@@ -1,4 +1,4 @@
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { HTTP } from "./http";
 
 export const bookServiceHttp=reactive({
@@ -21,6 +21,8 @@ export const bookServiceHttp=reactive({
         let existing=this.books.find(b => b.id==id) || {title:"",author:""}
         if (id!="create") HTTP.get("/simple/books/"+id).then(book=>{
             this.verify(book);
+            Object.assign(existing,book)
+            console.log("Existing",existing)
         })
         return existing;
     },
