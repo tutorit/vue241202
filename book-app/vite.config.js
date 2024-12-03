@@ -15,4 +15,9 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  server:{
+    proxy:{
+      '/translations':'http://localhost:9000',
+    }
+  }
 })

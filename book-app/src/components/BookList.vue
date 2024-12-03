@@ -1,5 +1,5 @@
 <script setup>
-import {ref,computed} from 'vue';
+import {ref,computed, inject} from 'vue';
 import { formatCurrency,formatDate,vFocus } from '../utils/formatters';
 import { useRouter } from 'vue-router';
 import { bookService } from '../utils/bookservice';
@@ -8,7 +8,7 @@ const titleFilter=ref("");
 const authorFilter=ref("");
 const sortOrder=ref("title");
 
-
+const tx=inject("tx");
 
 const filteredBooks=computed(() => {
     let filtered=bookService.books.filter(b => b.title.toLowerCase().includes(titleFilter.value.toLowerCase()) &&  
@@ -39,8 +39,8 @@ function goto(book){
                     <option value="title">Title</option>
                     <option value="author">Author</option>
                 </select></th>
-                <th><input placeholder="Title" v-model="titleFilter" /></th>
-                <th><input v-focus placeholder="Author" v-model="authorFilter" /></th>
+                <th><input :placeholder="tx.book.title" v-model="titleFilter" /></th>
+                <th><input v-focus :placeholder="tx.book.author" v-model="authorFilter" /></th>
                 <th>Price</th>
                 <th>Published</th>
                 <th><RouterLink to="/book/create">Create</RouterLink></th>
