@@ -9,7 +9,9 @@ export const bookService=reactive({
     ],
 
     get(id){
-        return this.books.find(b => b.id==id) || {title:"",author:""};
+        let book=this.books.find(b => b.id==id) ;
+        if (book) return book;
+        return {title:"",author:""};
     },
 
     save(book){},
