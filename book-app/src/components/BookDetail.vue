@@ -1,21 +1,23 @@
 <script setup>
 import { bookService } from '@/utils/bookservice';
+import { bookServiceHttp } from '@/utils/bookservicehttp';
 import { useRoute, useRouter } from 'vue-router';
 
 
 const route=useRoute();
 const id=route.params.id;
-const book=bookService.get(id);
+const book=bookServiceHttp.get(id);
 
 
 const router=useRouter();
 
 function create(){
-    bookService.create(book)
+    bookServiceHttp.create(book)
     router.back();
 }
 
 function save(){
+    bookServiceHttp.save(book);
     router.back();
 }
 

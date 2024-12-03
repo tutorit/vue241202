@@ -18,6 +18,7 @@ export default defineConfig({
   server:{
     proxy:{
       '/translations':'http://localhost:9000',
+      '/simple':'http://localhost:9000',
     }
   }
 })

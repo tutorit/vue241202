@@ -7,6 +7,10 @@ import BookList from './components/BookList.vue'
 import logo from './assets/books.gif'
 import { HTTP } from './utils/http';
 import { provide, ref } from 'vue';
+import { bookServiceHttp } from './utils/bookservicehttp';
+
+
+bookServiceHttp.getAll();
 
 const tx=ref({
   title:'Some App',

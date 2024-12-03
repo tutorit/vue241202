@@ -1,9 +1,10 @@
 <script setup>
 import { bookService } from '@/utils/bookservice';
+import { bookServiceHttp } from '@/utils/bookservicehttp';
 import { useRoute } from 'vue-router';
 
 const route=useRoute();
-const book=bookService.get(route.params.id)
+const book=bookServiceHttp.get(route.params.id)
 </script>
 <template>
     <div>

@@ -3,6 +3,7 @@ import {ref,computed, inject} from 'vue';
 import { formatCurrency,formatDate,vFocus } from '../utils/formatters';
 import { useRouter } from 'vue-router';
 import { bookService } from '../utils/bookservice';
+import { bookServiceHttp } from '@/utils/bookservicehttp';
 
 const titleFilter=ref("");
 const authorFilter=ref("");
@@ -11,7 +12,7 @@ const sortOrder=ref("title");
 const tx=inject("tx");
 
 const filteredBooks=computed(() => {
-    let filtered=bookService.books.filter(b => b.title.toLowerCase().includes(titleFilter.value.toLowerCase()) &&  
+    let filtered=bookServiceHttp.books.filter(b => b.title.toLowerCase().includes(titleFilter.value.toLowerCase()) &&  
                                 b.author.toLowerCase().includes(authorFilter.value.toLowerCase()));
     filtered.sort((a,b) => a[sortOrder.value].localeCompare(b[sortOrder.value]));
     return filtered;
@@ -27,6 +28,10 @@ const router=useRouter();
 
 function goto(book){
     router.push("/book/"+book.id)
+}
+
+function deleteBook(book){
+    bookServiceHttp.deleteBook(book);
 }
 
 </script>
@@ -54,7 +59,7 @@ function goto(book){
                 <td :class="{tooSmall:book.price<12,ratherBig:book.price>14}" 
                     :style="priceStyle(book.price)">{{ formatCurrency(book.price) }}</td>
                 <td>{{ formatDate(book.published) }}</td>
-                <td>Del</td>
+                <td @click="() => deleteBook(book)" class="clickable">Del</td>
             </tr>
         </tbody>
     </table>
